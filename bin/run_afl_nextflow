@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+#export JVM_OPTS="$JVM_OPTS -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:5005"
+
 parentdir="$(dirname "$(pwd)")"
-/usr/bin/env bash -c "./bin/jqf-afl-fuzz -v -c $parentdir/growe/build/libs/growe-1.0-SNAPSHOT-all.jar:$parentdir/growe/build/classes/groovy/main de.schemmea.ma.NfTest testAFL -i $(pwd)/examples/target/seeds/nextflow/"
+/usr/bin/env bash -c "./bin/jqf-afl-fuzz -t 12000 -v -c $(scripts/examples_classpath.sh) de.schemmea.ma.NfTest testAFL -i $(pwd)/examples/target/seeds/nextflow/ -x $(pwd)/examples/target/test-classes/dictionaries/nextflow.dict"
+#/usr/bin/env bash -c "./bin/jqf-afl-fuzz -v -c $(scripts/examples_classpath.sh) edu.berkeley.cs.jqf.examples.closure.CompilerTest testWithInputStream -i $(pwd)/examples/target/seeds/javaclass/"
+#/usr/bin/env bash -c "./bin/jqf-afl-fuzz -v -c $(scripts/examples_classpath.sh) edu.berkeley.cs.jqf.examples.imageio.PngReaderTest read -i $(pwd)/examples/target/seeds/png/"
+#/usr/bin/env bash -c "./bin/jqf-afl-fuzz -v -c $(scripts/examples_classpath.sh) edu.berkeley.cs.jqf.examples.ant.ProjectBuilderTest testWithInputStream -i $(pwd)/examples/target/seeds/xml/"
 
