@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
 parentdir="$(dirname "$(pwd)")"
-repodir="$(dirname "$parentdir")"
-/usr/bin/env bash -c "./bin/jqf-afl-fuzz -v -c $repodir/growe/build/libs/growe-1.0-SNAPSHOT-all.jar:$repodir/growe/build/classes/groovy/main de.schemmea.ma.NfTest testAFL -i $parentdir/examples/target/seeds/nextflow/"
+/usr/bin/env bash -c "./bin/jqf-afl-fuzz -v -c $parentdir/growe/build/libs/growe-1.0-SNAPSHOT-all.jar:$parentdir/growe/build/classes/groovy/main de.schemmea.ma.NfTest testAFL -i $(pwd)/examples/target/seeds/nextflow/"
 
