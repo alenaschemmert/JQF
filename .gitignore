@@ -22,3 +22,6 @@ experiments/*-results-*
 */work/
 /generatedflows/
 */generatedflows/
+
+/exps1/*
+figs/*
